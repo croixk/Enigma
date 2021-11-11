@@ -42,27 +42,42 @@ class Enigma
     for i in 0..(message_array.length - 1)
       if i%4 == 0   # a
         alphabet_index = @alphabet.index(message_array[i])
-        new_index = (a_shift + alphabet_index)%27
+        if(alphabet_index == nil)
+          encrypted_array << message_array[i]
+        else
+          new_index = (a_shift + alphabet_index)%27
+          encrypted_array << @alphabet[new_index]
+        end
 
-        encrypted_array << @alphabet[new_index]
       elsif i%4 == 1 # b
         alphabet_index = @alphabet.index(message_array[i])
-        new_index = (b_shift + alphabet_index)%27
+        if(alphabet_index == nil)
+          encrypted_array << message_array[i]
+        else
+          new_index = (b_shift + alphabet_index)%27
+          encrypted_array << @alphabet[new_index]
+        end
 
-        encrypted_array << @alphabet[new_index]
       elsif i%4 == 2 # c
         alphabet_index = @alphabet.index(message_array[i])
-        new_index = (c_shift + alphabet_index)%27
+        if(alphabet_index == nil)
+          encrypted_array << message_array[i]
+        else
+          new_index = (c_shift + alphabet_index)%27
+          encrypted_array << @alphabet[new_index]
+        end
 
-        encrypted_array << @alphabet[new_index]
       elsif i%4 == 3 # d
         alphabet_index = @alphabet.index(message_array[i])
-        new_index = (d_shift + alphabet_index)%27
-
-        encrypted_array << @alphabet[new_index]
+        if(alphabet_index == nil)
+          encrypted_array << message_array[i]
+        else
+          new_index = (d_shift + alphabet_index)%27
+          encrypted_array << @alphabet[new_index]
+        end
       end
-    end
 
+    end
     # return hash - 3 keys (encryption, key, date)
     encrypted_hash = {}
     encrypted_hash[:date] = date
@@ -70,7 +85,6 @@ class Enigma
     encrypted_hash[:key] = key
     encrypted_hash
   end
-
 
   def decrypt(ciphertext, key = 0, date = Date)
     ciphertext = ciphertext.downcase
