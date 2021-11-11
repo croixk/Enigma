@@ -1,7 +1,15 @@
 require './lib/enigma'
 
+message_file = File.open('message.txt', 'r')
+read_message = message_file.read
 
-ARGV == [message, encrypted_txt]
-message_file = File.open(message, "r")
+
+
+
+
+
+ARGV == ['message.txt', 'encrypted.txt']
+
+
 
 require "pry"; binding.pry
