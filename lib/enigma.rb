@@ -9,7 +9,7 @@ class Enigma
   end
 
 
-  def encrypt(message, key = 0, date = Date)
+  def encrypt(message, key = 0, date = Date.today)
     message = message.downcase
 
     if key == 0
@@ -18,6 +18,8 @@ class Enigma
 
     #make key into 5 character string
     key_string = key.to_s.rjust(5)
+    # do i need (5, "0")
+
 
     # produce (4) two digit int keys
     a_key = key_string[0, 2].to_i
