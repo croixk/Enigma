@@ -12,6 +12,8 @@ enigma = Enigma.new
 
 decrypted_file = File.open('decrypted.txt', 'w')
 
-decrypted_file.write(enigma.decrypt(read_encrypted, key, date))
+decrypted_message = enigma.decrypt(read_encrypted, key, date)[:decryption]
+
+decrypted_file.write(decrypted_message)
 
 puts "Created #{ARGV[1]} with the key #{key} and date #{date}"
