@@ -1,15 +1,21 @@
 require './lib/enigma'
 
+arguments = ARGV
+
+key = "02715"
+date = "040895"
+
 message_file = File.open('message.txt', 'r')
 read_message = message_file.read
 
+enigma = Enigma.new
 
 
 
-
-
-ARGV == ['message.txt', 'encrypted.txt']
+encrypted_file = File.open('encrypted.txt', 'w')
 
 
 
-require "pry"; binding.pry
+encrypted_file.write(enigma.encrypt(read_message, key, date))
+
+puts "Created #{ARGV[1]} with the key #{key} and date #{date}"
