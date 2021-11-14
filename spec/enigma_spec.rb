@@ -44,10 +44,4 @@ RSpec.describe Enigma do
     expect(enigma.decrypt("keder ohulw", "02715", "040895")).to eq(expected)
   end
 
-  it 'return_hash' do
-    enigma = Enigma.new
-    expected =  {decryption: "hello world", key: "02715", date: "040895"}
-    expect(enigma.return_hash("keder ohulw", "02715", "040895")).to eq(expected)
-  end
-
 end
