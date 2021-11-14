@@ -6,7 +6,6 @@ class Enigma
 
   def initialize
     @alphabet = ("a".."z").to_a << " "
-
   end
 
   # takes in argument for a-d shift, message_array,
@@ -38,7 +37,6 @@ class Enigma
 
     if date == nil
       date = Date.today.strftime("%d%m%y")
-      require "pry"; binding.pry
     end
 
     #make key into 5 character string
@@ -58,7 +56,7 @@ class Enigma
     c_shift = date_square_4[2].to_i + c_key
     d_shift = date_square_4[3].to_i + d_key
 
-    shifts = [a_shift, b_shift, c_shift, d_shift]
+    shifts = [a_shift, b_shift, c_shift, d_shift, key, date]
   end
 
   def encrypt(message, key = 0, date = nil)
@@ -83,13 +81,13 @@ class Enigma
 
     # return hash - 3 keys (encryption, key, date)
     encrypted_hash = {}
-    encrypted_hash[:date] = date
+    encrypted_hash[:date] = shifts[5]
     encrypted_hash[:encryption] = encrypted_array.join
-    encrypted_hash[:key] = key
+    encrypted_hash[:key] = shifts[4]
     encrypted_hash
   end
 
-  def decrypt(ciphertext, key = 0, date = Date)
+  def decrypt(ciphertext, key = 0, date = nil)
 
     # split message into array
     message_array = ciphertext.downcase.chars
@@ -111,9 +109,10 @@ class Enigma
 
     # return hash - 3 keys (encryption, key, date)
     encrypted_hash = {}
-    encrypted_hash[:date] = date
+    encrypted_hash[:date] = shifts[5]
     encrypted_hash[:decryption] = encrypted_array.join
-    encrypted_hash[:key] = key
+    encrypted_hash[:key] = shifts[4]
+    
     encrypted_hash
   end
 
