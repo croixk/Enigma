@@ -4,6 +4,9 @@ require 'spec_helper'
 
 RSpec.describe Enigma do
 
+
+    ## add tests for uppercase letters, special characters - all edge cases
+
   it 'exists' do
     enigma = Enigma.new
     expect(enigma).to be_instance_of(Enigma)
@@ -21,12 +24,17 @@ RSpec.describe Enigma do
     expect(enigma.decrypted_character(1, ["?"], 0)).to eq("?")
   end
 
+  it 'generate_shifts' do
+    enigma = Enigma.new
+    expect(enigma.generate_shifts("02715", "040895")).to eq([3, 27, 73, 20])
+  end
 
   it 'encrypt method' do
     enigma = Enigma.new
     expected = {encryption: "keder ohulw", key: "02715", date: "040895"}
 
     expect(enigma.encrypt("hello world", "02715", "040895")).to eq(expected)
+    # expect(enigma.encrypt("hello world")).to eq(expected)
   end
 
   it 'decrypt method' do
@@ -37,6 +45,5 @@ RSpec.describe Enigma do
   end
 
 
-  ## add tests for uppercase letters, special characters - all edge cases
 
 end
