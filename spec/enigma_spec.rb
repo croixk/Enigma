@@ -43,4 +43,10 @@ RSpec.describe Enigma do
     expect(enigma.decrypt("keder ohulw", "02715", "040895")).to eq(expected)
   end
 
+  it 'crack' do
+    enigma = Enigma.new
+    enigma.crack("vjqtbeaweqihssi", "291018")
+    expected = {decryption: "hello world end", date: "291018", key: "08304"}
+  end
+
 end
