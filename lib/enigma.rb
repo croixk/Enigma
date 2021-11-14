@@ -9,7 +9,6 @@ class Enigma
 
   end
 
-
   # takes in argument for a-d shift, message_array,
     # returns character to add
   def encrypted_character(shift, message_array, i)
@@ -38,7 +37,7 @@ class Enigma
     end
 
     if date == nil
-      date = Date.today
+      date = Date.today.strftime("%d%m%y")
       require "pry"; binding.pry
     end
 
@@ -62,7 +61,6 @@ class Enigma
     shifts = [a_shift, b_shift, c_shift, d_shift]
   end
 
-
   def encrypt(message, key = 0, date = nil)
 
     # split message into lowercase array
@@ -81,8 +79,8 @@ class Enigma
       elsif i%4 == 3 # d
         encrypted_array << encrypted_character(shifts[3], message_array, i)
       end
-
     end
+
     # return hash - 3 keys (encryption, key, date)
     encrypted_hash = {}
     encrypted_hash[:date] = date
