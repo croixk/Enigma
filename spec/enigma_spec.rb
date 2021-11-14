@@ -26,7 +26,7 @@ RSpec.describe Enigma do
 
   it 'generate_shifts' do
     enigma = Enigma.new
-    expect(enigma.generate_shifts("02715", "040895")).to eq([3, 27, 73, 20])
+    expect(enigma.generate_shifts("02715", "040895")).to eq([3, 27, 73, 20, "02715", "040895"])
   end
 
   it 'encrypt method' do
@@ -34,7 +34,6 @@ RSpec.describe Enigma do
     expected = {encryption: "keder ohulw", key: "02715", date: "040895"}
 
     expect(enigma.encrypt("hello world", "02715", "040895")).to eq(expected)
-    # expect(enigma.encrypt("hello world")).to eq(expected)
   end
 
   it 'decrypt method' do
