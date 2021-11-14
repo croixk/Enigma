@@ -8,8 +8,31 @@ class Enigma
     @alphabet = ("a".."z").to_a << " "
   end
 
+  # takes in argument for a-d shift - returns character to add
+  def encrypted_character(shift, message_array, i)
+    alphabet_index = @alphabet.index(message_array[i])
+    if(alphabet_index == nil)
+      message_array[i]
+    else
+      new_index = (shift + alphabet_index)%27
+      @alphabet[new_index]
+    end
+  end
+
+  def decrypted_character(shift, message_array, i)
+    alphabet_index = @alphabet.index(message_array[i])
+    if(alphabet_index == nil)
+      message_array[i]
+    else
+      new_index = (-shift + alphabet_index)%27
+      @alphabet[new_index]
+    end
+  end
+
 
   def encrypt(message, key = 0, date = Date.today)
+
+
     message = message.downcase
 
     if key == 0
@@ -36,45 +59,20 @@ class Enigma
     d_shift = date_square_4[3].to_i + d_key
 
     # split message into array
+
+    # can use message.chars maybe?
     message_array = message.split(//)
     encrypted_array = []
 
     for i in 0..(message_array.length - 1)
       if i%4 == 0   # a
-        alphabet_index = @alphabet.index(message_array[i])
-        if(alphabet_index == nil)
-          encrypted_array << message_array[i]
-        else
-          new_index = (a_shift + alphabet_index)%27
-          encrypted_array << @alphabet[new_index]
-        end
-
+        encrypted_array << encrypted_character(a_shift, message_array, i)
       elsif i%4 == 1 # b
-        alphabet_index = @alphabet.index(message_array[i])
-        if(alphabet_index == nil)
-          encrypted_array << message_array[i]
-        else
-          new_index = (b_shift + alphabet_index)%27
-          encrypted_array << @alphabet[new_index]
-        end
-
+        encrypted_array << encrypted_character(b_shift, message_array, i)
       elsif i%4 == 2 # c
-        alphabet_index = @alphabet.index(message_array[i])
-        if(alphabet_index == nil)
-          encrypted_array << message_array[i]
-        else
-          new_index = (c_shift + alphabet_index)%27
-          encrypted_array << @alphabet[new_index]
-        end
-
+        encrypted_array << encrypted_character(c_shift, message_array, i)
       elsif i%4 == 3 # d
-        alphabet_index = @alphabet.index(message_array[i])
-        if(alphabet_index == nil)
-          encrypted_array << message_array[i]
-        else
-          new_index = (d_shift + alphabet_index)%27
-          encrypted_array << @alphabet[new_index]
-        end
+        encrypted_array << encrypted_character(d_shift, message_array, i)
       end
 
     end
@@ -116,37 +114,13 @@ class Enigma
 
     for i in 0..(message_array.length - 1)
       if i%4 == 0   # a
-        alphabet_index = @alphabet.index(message_array[i])
-        if(alphabet_index == nil)
-          encrypted_array << message_array[i]
-        else
-          new_index = (-a_shift + alphabet_index)%27
-          encrypted_array << @alphabet[new_index]
-        end
+        encrypted_array << decrypted_character(a_shift, message_array, i)
       elsif i%4 == 1 # b
-        alphabet_index = @alphabet.index(message_array[i])
-        if(alphabet_index == nil)
-          encrypted_array << message_array[i]
-        else
-          new_index = (-b_shift + alphabet_index)%27
-          encrypted_array << @alphabet[new_index]
-        end
+        encrypted_array << decrypted_character(b_shift, message_array, i)
       elsif i%4 == 2 # c
-        alphabet_index = @alphabet.index(message_array[i])
-        if(alphabet_index == nil)
-          encrypted_array << message_array[i]
-        else
-          new_index = (-c_shift + alphabet_index)%27
-          encrypted_array << @alphabet[new_index]
-        end
+        encrypted_array << decrypted_character(c_shift, message_array, i)
       elsif i%4 == 3 # d
-        alphabet_index = @alphabet.index(message_array[i])
-        if(alphabet_index == nil)
-          encrypted_array << message_array[i]
-        else
-          new_index = (-d_shift + alphabet_index)%27
-          encrypted_array << @alphabet[new_index]
-        end
+        encrypted_array << decrypted_character(d_shift, message_array, i)
       end
     end
 
