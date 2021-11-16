@@ -2,7 +2,7 @@ require './lib/enigma'
 
 arguments = ARGV
 
-key = "02715"
+key = "11111"
 date = "040895"
 
 message_file = File.open('message.txt', 'r')
