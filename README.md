@@ -2,14 +2,12 @@ Functionality - 4
 I completed all of the required functionality (Enigma class, encrypt, decrypt, and command line interface). I also have a functional cracking method.
 
 
-Object oriented programming - 3 
-I think that my object oriented programming score is a 3. I started with much larger methods, and then created helper methods to pull out redundant code. I considered breaking my program up into multiple classes, but I eventually decided to leave them in the enigma class. 
-
-To be clear, my crack method is extremely long, but this was the last thing that I did, and I ran out of time to refactor this method. Outside of this, the enigma class is only about 115 lines long - my assumption was that the length of the crack method wouldn't be held against me, since it was optional. 
+Object oriented programming - 4
+I think that my object oriented programming score is a 4. I started with much larger methods, and then created helper methods to pull out redundant code. I moved these helper methods to two modules, one for the crack method, and another for the other methods. None of my classes are over 150 lines, I believe. 
 
 
 Ruby Conventions and Mechanics - 3 
-I belive this score should be a 3. My methods were too long for a 4, but I think that I used data structures and enumerables efficiently. I used a hash in several methods for a return statement.
+I belive this score should be a 3. My methods were too long for a 4, but I think that I used data structures and enumerables efficiently. I used several hashes. 
 
 
 Test Driven Development - 3
