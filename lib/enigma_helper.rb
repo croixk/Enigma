@@ -22,6 +22,16 @@ module EnigmaHelper
     end
   end
 
+  def shifted_character(shift, message_array, i, direction)
+    alphabet_index = @alphabet.index(message_array[i])
+    if(alphabet_index == nil)
+      message_array[i]
+    else
+      new_index = (direction*shift + alphabet_index)%27
+      @alphabet[new_index]
+    end
+  end
+
   # this method generates the a-d shifts, as well as date and key if needed
   def generate_shifts(key, date)
     if key == 0

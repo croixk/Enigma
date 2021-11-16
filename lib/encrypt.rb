@@ -1,4 +1,6 @@
-require './lib/enigma'
+require_relative './enigma'
+require_relative './enigma_helper'
+require_relative './crack_helper'
 
 arguments = ARGV
 
