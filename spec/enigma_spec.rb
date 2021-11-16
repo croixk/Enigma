@@ -1,11 +1,11 @@
+require_relative 'spec_helper'
 require 'date'
 require './lib/enigma'
-require 'spec_helper'
+
 
 RSpec.describe Enigma do
 
-
-    ## add tests for uppercase letters, special characters - all edge cases
+  ## add tests for uppercase letters, special characters - all edge cases
 
   it 'exists' do
     enigma = Enigma.new
@@ -44,12 +44,12 @@ RSpec.describe Enigma do
 
   it 'decrypt method' do
     enigma = Enigma.new
-    expected =  {decryption: "hello world", key: "02715", date: "040895"}
+    expected =  {encryption: "hello world", key: "02715", date: "040895"}
 
     expect(enigma.decrypt("keder ohulw", "02715", "040895")).to eq(expected)
 
     # test special characters
-    expected =  {decryption: "test@@!112", key: "02715", date: "040895"}
+    expected =  {encryption: "test@@!112", key: "02715", date: "040895"}
     expect(enigma.decrypt("wekm@@!112", "02715", "040895")).to eq(expected)
   end
 
@@ -78,19 +78,19 @@ RSpec.describe Enigma do
     enigma = Enigma.new
 
     # this is from project description
-    expected = {decryption: "hello world end", date: "291018", key: "08304"}
+    expected = {encryption: "hello world end", date: "291018", key: "08304"}
     expect(enigma.crack("vjqtbeaweqihssi", "291018")).to eq(expected)
 
     # this is my own message
-    expected = {decryption: "hello, my name is croix. i am a student at turing end", date: "040895", key: "02715"}
+    expected = {encryption: "hello, my name is croix. i am a student at turing end", date: "040895", key: "02715"}
     expect(enigma.crack("keder,sfa fupesbv vkrip.cisup ttvtmxhnltdtsmxragj xgg", "040895")).to eq(expected)
 
     # test just " end"
-    expected = {decryption: " end", date: "040895", key: "02715"}
+    expected = {encryption: " end", date: "040895", key: "02715"}
     expect(enigma.crack("cefx", "040895")).to eq(expected)
 
     # make sure it works for a repetitive key
-    expected = {decryption: "one more test! end", date: "040895", key: "11111"}
+    expected = {encryption: "one more test! end", date: "040895", key: "11111"}
     expect(enigma.crack(" yrpyzduldrhe!muzo", "040895")).to eq(expected)
 
   end

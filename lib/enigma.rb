@@ -1,6 +1,6 @@
 require 'date'
-require './enigma_helper'
-require './crack_helper'
+require_relative './enigma_helper'
+require_relative './crack_helper'
 
 class Enigma
   include EnigmaHelper
@@ -12,22 +12,14 @@ class Enigma
     @alphabet = ("a".."z").to_a << " "
   end
 
-  def encrypt(message, key = 0, date = nil)
+  def encrypt(message, key = 0, date = nil, direction = 1)
     message_array = message.downcase.chars
     encrypted_array = []
 
     shifts = generate_shifts(key, date)
 
     for i in 0..(message_array.length - 1)
-      if i%4 == 0   # a
-        encrypted_array << encrypted_character(shifts[0], message_array, i)
-      elsif i%4 == 1 # b
-        encrypted_array << encrypted_character(shifts[1], message_array, i)
-      elsif i%4 == 2 # c
-        encrypted_array << encrypted_character(shifts[2], message_array, i)
-      elsif i%4 == 3 # d
-        encrypted_array << encrypted_character(shifts[3], message_array, i)
-      end
+        encrypted_array << shifted_character(shifts[i%4], message_array, i, direction)
     end
 
     # return hash - 3 keys (encryption, key, date)
@@ -38,30 +30,9 @@ class Enigma
     encrypted_hash
   end
 
-  def decrypt(ciphertext, key = 0, date = nil)
-    # split message into array
-    message_array = ciphertext.downcase.chars
-    encrypted_array = []
+  def decrypt(ciphertext, key = 0, date = nil, direction = -1)
+    encrypt(ciphertext, key, date, direction)
 
-    shifts = generate_shifts(key, date)
-
-    for i in 0..(message_array.length - 1)
-      if i%4 == 0   # a
-        encrypted_array << decrypted_character(shifts[0], message_array, i)
-      elsif i%4 == 1 # b
-        encrypted_array << decrypted_character(shifts[1], message_array, i)
-      elsif i%4 == 2 # c
-        encrypted_array << decrypted_character(shifts[2], message_array, i)
-      elsif i%4 == 3 # d
-        encrypted_array << decrypted_character(shifts[3], message_array, i)
-      end
-    end
-
-    encrypted_hash = {}
-    encrypted_hash[:date] = shifts[5]
-    encrypted_hash[:decryption] = encrypted_array.join
-    encrypted_hash[:key] = shifts[4]
-    encrypted_hash
   end
 
 

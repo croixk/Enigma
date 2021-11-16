@@ -1,4 +1,7 @@
-require './lib/enigma'
+require_relative './enigma'
+require_relative './enigma_helper'
+require_relative './crack_helper'
+
 
 arguments = ARGV
 
@@ -12,7 +15,7 @@ enigma = Enigma.new
 
 decrypted_file = File.open('decrypted.txt', 'w')
 
-decrypted_message = enigma.decrypt(read_encrypted, key, date)[:decryption]
+decrypted_message = enigma.decrypt(read_encrypted, key, date)[:encryption]
 
 decrypted_file.write(decrypted_message)
 
