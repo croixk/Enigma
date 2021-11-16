@@ -12,9 +12,9 @@ Ruby Conventions and Mechanics - 3
 I belive this score should be a 3. My methods were too long for a 4, but other than that, my code is properly indented and spaced, and lines aren't too long typically. I think that I used data structures and enumerables efficiently, and I used several hashes. 
 
 
-Test Driven Development - 3
+Test Driven Development - 2?
 
-I tested all of my methods, with the exception of the ones that require user input or have random input. I used TDD, writing tests first, and tested edge cases. My test coverage is 100% 
+I thought that my coverage was 100%, but in the review we determined that it wasn't working properly. It currently shows 98.2% test coverage - I think this probably puts me at a 2, unfortunately. 
 
 
 Other notes:
